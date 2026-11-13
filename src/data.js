@@ -2,10 +2,16 @@
 // Any text field left as '' (or an empty list) is simply hidden on the page.
 export const wedding = {
   monogram: 'S&A', // groom first (सचिन & अपर्णा)
+  // Small credit line at the very bottom of the page. Set to '' to hide it.
+  credit: 'Created by Sumit Mishra',
   // Secret word for the link-maker page: open https://SITE/?make=<makerKey>
   makerKey: 'anu-aarav-7391',
+  // Short address that redirects to the link-maker: open https://SITE/invite
+  makerPath: '/invite',
   // Couple photo shown in the hero. Replace by overwriting the file in public/images/ (same name), or change this path
   couplePhoto: '/images/couple.jpg',
+  // Complete photo, shown only when the guest taps the hero photo.
+  couplePhotoFull: '/images/couple-full.png',
   year: '2027',
   datesText: '29 जनवरी से 10 फरवरी',
   // Countdown target: first ceremony, Indian Standard Time (+05:30). No time was given, so this is the start of the day.

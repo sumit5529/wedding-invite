@@ -20,6 +20,12 @@ export function makeInviteLink(name, base = window.location.origin) {
   return url.toString();
 }
 
+// On the short address (https://site.vercel.app/invite) returns the link-maker address to redirect to, else null.
+export function getLinkMakerRedirect() {
+  const path = window.location.pathname.replace(/\/+$/, '');
+  return path === wedding.makerPath ? `/?make=${encodeURIComponent(wedding.makerKey)}` : null;
+}
+
 // True on the link-maker page: https://site.vercel.app/?make=<makerKey>
 export function isLinkMakerPage() {
   return new URLSearchParams(window.location.search).get('make') === wedding.makerKey;

@@ -20,15 +20,15 @@ export default function Events() {
               <div className="columns__days">
               {wedding.days
                 .filter((day) => day.column === c + 1)
-                .map((day) => (
+                .map((day, d) => (
                   <div key={day.date} className="day">
-                    <Reveal>
+                    <Reveal delay={d * 180}>
                       <p className="eyebrow">{day.label}</p>
                       <h4 className="day__title">{day.date}</h4>
                     </Reveal>
                     <div className="day__grid">
                       {day.events.map((ev, i) => (
-                        <Reveal key={ev.name} delay={i * 120}>
+                        <Reveal key={ev.name} delay={d * 180 + 150 + i * 120}>
                           <ArchFrame className="event">
                             <div className="event__body">
                               <h4>{ev.name}</h4>

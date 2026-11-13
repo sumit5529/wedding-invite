@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { wedding } from '../data';
 import { getGuestName } from '../guest';
 import Reveal from './Reveal';
@@ -7,6 +8,16 @@ import GoldDivider from './GoldDivider';
 export default function Hero() {
   const { bride, groom } = wedding;
   const guest = getGuestName();
+  const [open, setOpen] = useState(false);
+
+  // Close the full photo with the Escape key.
+  useEffect(() => {
+    if (!open) return undefined;
+    const onKey = (e) => e.key === 'Escape' && setOpen(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
+
   return (
     <header className="section section--green hero">
       <div className="hero__frame" />
@@ -22,10 +33,21 @@ export default function Hero() {
         </h1>
       </Reveal>
       <Reveal delay={200}>
-        <ArchFrame className="hero__portrait">
-          <img src={wedding.couplePhoto} alt={`${groom.name} और ${bride.name}`} />
-        </ArchFrame>
+        <button type="button" className="hero__portrait-btn" onClick={() => setOpen(true)} aria-label="पूरी फ़ोटो देखें">
+          <ArchFrame className="hero__portrait">
+            <img src={wedding.couplePhoto} alt={`${groom.name} और ${bride.name}`} />
+          </ArchFrame>
+          <span className="hero__portrait-hint">पूरी फ़ोटो देखने के लिए छुएँ</span>
+        </button>
       </Reveal>
+      {open && (
+        <div className="lightbox" role="dialog" aria-modal="true" onClick={() => setOpen(false)}>
+          <img src={wedding.couplePhotoFull} alt={`${groom.name} और ${bride.name}`} />
+          <button type="button" className="lightbox__close" aria-label="बंद करें">
+            ×
+          </button>
+        </div>
+      )}
       <Reveal delay={300}>
         <p className="eyebrow">शुभ तिथियाँ</p>
         <p className="hero__date">{wedding.datesText}</p>

@@ -8,7 +8,7 @@ export default function Venue() {
     <section
       className="section venue"
       style={{
-        backgroundImage: `linear-gradient(rgba(43,48,36,0.84), rgba(43,48,36,0.93)), url(${venue.background})`,
+        backgroundImage: `linear-gradient(rgba(74,18,28,0.84), rgba(74,18,28,0.93)), url(${venue.background})`,
       }}
     >
       <Reveal>
@@ -50,6 +50,7 @@ export default function Venue() {
       <footer className="footer">
         <span /> {groom.name} &amp; {bride.name} · {year} <span />
       </footer>
+      {wedding.credit && <p className="credit">{wedding.credit}</p>}
     </section>
   );
 }
